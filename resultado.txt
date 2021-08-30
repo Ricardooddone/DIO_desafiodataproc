@@ -1,0 +1,68 @@
+Resultado do desafio dataproc
+
+ID do job
+job-desafioA
+UUID do job
+e5fabe85-17e3-4adc-9a63-7c005bc97542
+Tipo
+Job do Dataproc
+Status
+ Falha
+Horário de início:
+30 de ago. de 2021 02:21:04
+Tempo decorrido:
+4 s
+Status:
+Falha
+Região
+us-central1
+Cluster
+cluster-60b1
+Tipo de job
+PySpark
+Arquivo Python principal
+gs://desafiodataproc74/contador.py
+Marcadores
+
+
+Abaixo todo o procedimento ate a excecução do JOB com sua falha:
+
+Welcome to Cloud Shell! Type "help" to get started.
+Your Cloud Platform project in this session is set to desafiodataproc-323314.
+Use “gcloud config set project [PROJECT_ID]” to change to a different project.
+ricardooddone@cloudshell:~ (desafiodataproc-323314)$ cd dio-desafio-dataproc/                                                                                              
+ricardooddone@cloudshell:~/dio-desafio-dataproc (desafiodataproc-323314)$ ls -ls
+total 528
+  4 -rw-r--r-- 1 ricardooddone ricardooddone    448 Aug 19 05:12 contador.py
+ 76 -rw-r--r-- 1 ricardooddone ricardooddone  76292 Aug 19 04:42 DIO.png
+ 12 -rw-r--r-- 1 ricardooddone ricardooddone  11357 Aug 19 04:42 LICENSE
+432 -rw-r--r-- 1 ricardooddone ricardooddone 441075 Aug 19 04:42 livro.txt
+  4 -rw-r--r-- 1 ricardooddone ricardooddone   1864 Aug 19 04:42 README.md
+ricardooddone@cloudshell:~/dio-desafio-dataproc (desafiodataproc-323314)$ gsutil ls                                                                                        
+gs://dataproc-staging-us-central1-173793480486-syqjej5o/
+gs://dataproc-temp-us-central1-173793480486-uxb8qppd/
+gs://desafiodataproc74/
+ricardooddone@cloudshell:~/dio-desafio-dataproc (desafiodataproc-323314)$ vim contador.py                                                                                  
+ricardooddone@cloudshell:~/dio-desafio-dataproc (desafiodataproc-323314)$ gsutil cp contador.py livro.txt gs:\\desafiodataproc-323314
+CommandException: Destination URL must name a directory, bucket, or bucket
+subdirectory for the multiple source form of the cp command.
+ricardooddone@cloudshell:~/dio-desafio-dataproc (desafiodataproc-323314)$ gsutil cp contador.py livro.txt gs://desafiodataproc74/
+Copying file://contador.py [Content-Type=text/x-python]...
+Copying file://livro.txt [Content-Type=text/plain]...
+- [2 files][431.2 KiB/431.2 KiB]
+Operation completed over 2 objects/431.2 KiB.
+ricardooddone@cloudshell:~/dio-desafio-dataproc (desafiodataproc-323314)$ gsutil cp contador.py livro.txt gs://desafiodataproc74/
+Copying file://contador.py [Content-Type=text/x-python]...
+Copying file://livro.txt [Content-Type=text/plain]...
+- [2 files][431.2 KiB/431.2 KiB]
+Operation completed over 2 objects/431.2 KiB.
+
+Falha:
+
+Job failed with message [SyntaxError: invalid syntax]. Additional details can be found at: https://console.cloud.google.com/dataproc/jobs/job-desafioA?project=desafiodataproc-323314&region=us-central1 gcloud dataproc jobs wait 'job-desafioA' --region 'us-central1' --project 'desafiodataproc-323314' https://console.cloud.google.com/storage/browser/dataproc-staging-us-central1-173793480486-syqjej5o/google-cloud-dataproc-metainfo/3b9f115d-c740-41f8-b56d-bf0ef1a101a8/jobs/job-desafioA/ gs://dataproc-staging-us-central1-173793480486-syqjej5o/google-cloud-dataproc-metainfo/3b9f115d-c740-41f8-b56d-bf0ef1a101a8/jobs/job-desafioA/driveroutput
+
+
+  File "/tmp/job-desafioA/contador.py", line 9
+    wordCounts.saveAstextfile(gs://desafiodataproc74/resultado
+                                ^
+SyntaxError: invalid syntax
